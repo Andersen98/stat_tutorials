@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="author: Maeve Andersen" />
+  <title>title: Stats Tutorial 1: Basics of R</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">title: Stats Tutorial 1: Basics of R</h1>
+  <p class="author">
+author: Maeve Andersen
+  </p>
+  <p class="date">date: Monday June 12 2023</p>
+</div>
+<div id="tutorial-1" class="slide section level1">
+<h1>tutorial 1</h1>
+<p>Basics of R</p>
+</div>
+<div class="slide section level1">
+
+<h2 id="getting-r-on-your-system">Getting R on your system</h2>
+<p>This tutorial is best done if you follow along on your own system.
+Make sure to download R if you have not already.</p>
+</div>
+<div class="slide section level1">
+
+<p># Getting R on your system</p>
+<p><strong>Mac and Windows</strong>: - select a mirror from <a
+href="https://cran.r-project.org/mirrors.html">cran.r-project.org/mirrors.html</a>
+- select either the Mac or Windows option depending on your system -
+follow the installer instructions</p>
+</div>
+<div class="slide section level1">
+
+<p># Getting R on your system</p>
+<p><strong>Debian, Ubuntu, Fedora (and most other
+distributions)</strong>: Download R from your package manager (ex:
+apt,rpm,pacman etc.. )</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">sudo</span> apt-get install r-base r-recommended</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sudo</span> dnf install R</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> r</span></code></pre></div>
+</div>
+<div class="slide section level1">
+
+<p># Setting up a front end</p>
+<p>From the arch linux wiki:</p>
+<p>“R does not include a point-and-click graphical user interface for
+statistics or data manipulation. However , third-party user interfaces
+for R are available, such as R Commander and Rattle.””</p>
+</div>
+<div class="slide section level1">
+
+<p># Setting up a front end</p>
+<p>For little fuss, I’d reccomend RStudio!
+posit.co/download/rstudio-desktop/</p>
+<p>(although I reccomend exploring other front ends)</p>
+</div>
+<div id="what-is-r" class="slide section level1">
+<h1>What is R?</h1>
+<p>From the R FAQ:y &gt; R is a system for statistical computation and
+graphics. It consists of a language plus a run-time environment with
+graphics, a debugger, access to certain system functions, and the
+ability to run programs stored in script files.</p>
+</div>
+<div id="intro-to-r" class="slide section level1">
+<h1>intro to R</h1>
+<p><em>intro to R source:
+https://cran.r-project.org/doc/manuals/r-release/R-intro.html</em> #
+Simple Manipulations and Vectors</p>
+<p>R operates on named <em>data structures</em>. The simplest is the
+numeric <em>vector</em>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.4</span>, <span class="fl">5.6</span>, <span class="fl">3.1</span>, <span class="fl">6.4</span>, <span class="fl">21.7</span>)</span></code></pre></div>
+</div>
+<div class="slide section level1">
+
+<p># Simple Manipulations and Vectors</p>
+<p>The function <code>c()</code> can take an arbitrary number of vector
+arguments and returns a vector got by concatnating the arguments end to
+end.</p>
+</div>
+<div class="slide section level1">
+
+<p># Simple Manipulations and Vectors</p>
+<p>The assignment operator,
+`<code>'points' to the object recieving the value of the expression. In most cases you can use the</code>=<code>operator. Assignments can also be made using the function</code>assign()`.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">assign</span>(<span class="st">&quot;x&quot;</span>, <span class="fu">c</span>(<span class="fl">10.4</span>, <span class="fl">5.6</span>, <span class="fl">3.1</span>, <span class="fl">6.4</span>, <span class="fl">21.7</span>))</span></code></pre></div>
+</div>
+<div class="slide section level1">
+
+<p># Simple Manipulations and Vectors</p>
+<p>You can also make assignments in the other direction.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">c</span>(<span class="fl">10.4</span>, <span class="fl">5.6</span>, <span class="fl">3.1</span>, <span class="fl">6.4</span>, <span class="fl">21.7</span>)<span class="ot">-&gt;</span>  x</span></code></pre></div>
+</div>
+<div class="slide section level1">
+
+<p># Simple Manipulations and Vectors</p>
+<p>If an expression is used as a complete commant, its value is printed
+and <em>lost</em>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span>x</span></code></pre></div>
+</div>
+<div class="slide section level1">
+
+<p># Simple Manipulations and Vectors</p>
+<p>If an expression is used as a complete commant, its value is printed
+and <em>lost</em>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span>x</span></code></pre></div>
+<pre><code> &gt; 1/x
+[1] 0.09615385 0.17857143 0.32258065 0.15625000 0.04608295</code></pre>
+</div>
+<div class="slide section level1">
+
+<p># Simple Manipulations and Vectors</p>
+<p><em>Question</em>: What is the value stored in <code>y</code>?</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.4</span>,<span class="fl">5.6</span>,<span class="fl">3.1</span>,<span class="fl">6.4</span>,<span class="fl">21.7</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">0</span>, x)</span></code></pre></div>
+</div>
+<div class="slide section level1">
+
+<p># Simple Manipulations and Vectors</p>
+<p><strong>Answer</strong>: y is a vector with 11 entries. It has two
+copies of <code>x</code> with a zero in the middle</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.4</span>,<span class="fl">5.6</span>,<span class="fl">3.1</span>,<span class="fl">6.4</span>,<span class="fl">21.7</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">0</span>, x)</span></code></pre></div>
+<pre><code> &gt; y
+ [1] 10.4  5.6  3.1  6.4 21.7  0.0 10.4  5.6  3.1  6.4 21.7
+&gt; </code></pre>
+</div>
+<div class="slide section level1">
+
+<p># Vector Arithmetic</p>
+<p>Vectors can be used in arithmetic expressions. Vectors in an
+expression don’t have to be the same length. If that is the case, the
+value of the expression is a vector of the same length as the larges
+vector. Smaller vectors are <em>recycled</em> as much as necessary until
+its size matches.</p>
+</div>
+<div class="slide section level1">
+
+<p># Vector Arithmetic</p>
+<p>Here, <code>2*x</code> is repeated 2.2 times, <code>y</code> is
+repeated 1 time, and 1 is repeated 11 times.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.4</span>,<span class="fl">5.6</span>,<span class="fl">3.1</span>,<span class="fl">6.4</span>,<span class="fl">21.7</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">0</span>, x)</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>x <span class="sc">+</span> y <span class="sc">+</span><span class="dv">1</span></span></code></pre></div>
+</div>
+<div class="slide section level1">
+
+<h2 id="sequences">Sequences</h2>
+<p>R has a number of facilities for generating commonly used sequences
+of numbers. For example 1:30 is the vector c(1, 2, …, 29, 30).</p>
+</div>
+<div class="slide section level1">
+
+<h2 id="sequences-1">Sequences</h2>
+<p>The colon operator has high priority within an expression, so, for
+example:</p>
+<p><code>2*1:15</code> is the vector
+<code>c(2, 4, …, 28, 30)</code>.</p>
+</div>
+<div class="slide section level1">
+
+<h2 id="sequences-2">Sequences</h2>
+<p>Put <code>n &lt;- 10</code> and compare the sequences
+<code>1:n-1</code> and <code>1:(n-1)</code>.</p>
+</div>
+<div class="slide section level1">
+
+<h2 id="other-objects">Other Objects</h2>
+<p>Vectors are the most important type of object in R, but there are
+several others.</p>
+<ul>
+<li><code>matrices</code> or more generally arrays are multi-dimensional
+generalizations of vectors.</li>
+<li><code>factors</code> provide compact ways to handle categorical
+data.</li>
+<li><code>lists</code> are a general form of vector in which the various
+elements need not be of the same type, and are often themselves vectors
+or lists.</li>
+<li><code>data frames</code> are matrix-like structures, in which the
+columns can be of different types.</li>
+<li><code>functions</code> which we will meet (perhaps in this tutorial
+or future ones).</li>
+</ul>
+</div>
+<div class="slide section level1">
+
+<h2 id="examples.">Examples.</h2>
+<p>For this section I used the Univariate section of:
+https://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf</p>
+</div>
+<div class="slide section level1">
+
+<h2 id="smoking-servey">Smoking Servey</h2>
+<p>A survey asks people if they smoke or not. The data is</p>
+<p>Yes, No, No, Yes, Yes</p>
+<p>We can enter it as:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;Yes&quot;</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">table</span>(x)</span></code></pre></div>
+</div>
+<div class="slide section level1">
+
+<h2 id="smoking-servey-1">Smoking Servey</h2>
+<p>A survey asks people if they smoke or not. The data is</p>
+<p>Yes, No, No, Yes, Yes</p>
+<p>We can enter it as:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;Yes&quot;</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">table</span>(x)</span></code></pre></div>
+<p>x No Yes 2 3</p>
+</div>
+<div class="slide section level1">
+
+</div>
+</body>
+</html>
